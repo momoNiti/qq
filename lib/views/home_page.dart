@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qq/models/restaurant.dart';
 import 'package:qq/net/restaurant_repository.dart';
 import 'package:qq/router/route_path.dart';
+import 'package:qq/utility/utility.dart';
 import 'package:qq/views/hoc/app_scaffold.dart';
+import 'package:qq/models/user.dart';
 
 class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class HomePage extends StatelessWidget {
                   builder: (context, AuthenticationState state) {
                     return state.status == AuthenticationStatus.authenticated
                         ? Text(context.select((AuthenticationBloc bloc) =>
-                            "Login as Mr.${bloc.state.user.name} and role is ${bloc.state.user.role}"))
+                            "Login as Mr.${bloc.state.user.name} and role is ${Utility.enumToString(bloc.state.user.role)}"))
                         : SizedBox.shrink();
                   },
                 ),
