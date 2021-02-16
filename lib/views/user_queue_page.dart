@@ -67,8 +67,9 @@ class UserQueuePage extends StatelessWidget {
                                       }),
                                   Text(
                                       "เวลาที่จอง ${snapshot.data.elementAt(index).timestamp.toDate().toString()}"),
-                                  Text("เวลาโดยประมาณ"),
-                                  Text("จำนวนคิวก่อนหน้า"),
+                                  Text("เวลาโดยประมาณ ===="),
+                                  Text(
+                                      "จำนวนคิวก่อนหน้า ${snapshot.data.elementAt(index).queueNumber - 1}"),
                                   Text(
                                       "สถานะ : ${snapshot.data.elementAt(index).status}")
                                 ],

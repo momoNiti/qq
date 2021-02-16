@@ -6,14 +6,17 @@ class Restaurant extends Equatable {
   final String id;
   final String name;
   final DocumentReference owner;
-  int queued;
+  final int queued;
 
-  Restaurant(
+  const Restaurant(
       {@required this.id,
       @required this.name,
       @required this.owner,
-      this.queued})
+      @required this.queued})
       : assert(id != null, owner != null);
+
+  static const empty = Restaurant(id: '', name: null, owner: null, queued: 0);
+
   @override
   List<Object> get props => [id, name, owner];
 
@@ -29,6 +32,7 @@ class Restaurant extends Equatable {
     return {
       'name': name,
       'owner': owner,
+      'queued': queued,
     };
   }
 
@@ -37,6 +41,7 @@ class Restaurant extends Equatable {
       id: json['id'] as String,
       name: json['name'] as String,
       owner: json['owner'] as DocumentReference,
+      queued: json['queued'] as int,
     );
   }
 
@@ -45,11 +50,7 @@ class Restaurant extends Equatable {
       id: snap.id,
       name: snap['name'] as String,
       owner: snap['owner'] as DocumentReference,
+      queued: snap['queued'] as int,
     );
   }
-
-  // // Other Method
-  // void changeMax(String id, int C){
-
-  // }
 }

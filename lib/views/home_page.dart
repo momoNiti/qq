@@ -6,7 +6,6 @@ import 'package:qq/net/restaurant_repository.dart';
 import 'package:qq/router/route_path.dart';
 import 'package:qq/utility/utility.dart';
 import 'package:qq/views/hoc/app_scaffold.dart';
-import 'package:qq/models/user.dart';
 
 class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class HomePage extends StatelessWidget {
                 ),
                 Expanded(
                   child: StreamBuilder<List<Restaurant>>(
-                    stream: restaurantRepository.fetchRestaurantsWithQueue(),
+                    stream: restaurantRepository.fetchRestaurants(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData && snapshot.data != null) {
                         return ListView.builder(
@@ -45,10 +44,13 @@ class HomePage extends StatelessWidget {
                                 Navigator.of(context).pushNamed(
                                   RoutePath.restaurant,
                                   arguments: Restaurant(
-                                    id: snapshot.data.elementAt(index).id,
-                                    name: snapshot.data.elementAt(index).name,
-                                    owner: snapshot.data.elementAt(index).owner,
-                                  ),
+                                      id: snapshot.data.elementAt(index).id,
+                                      name: snapshot.data.elementAt(index).name,
+                                      owner:
+                                          snapshot.data.elementAt(index).owner,
+                                      queued: snapshot.data
+                                          .elementAt(index)
+                                          .queued),
                                 );
                               },
                               child: ListTile(

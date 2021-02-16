@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:qq/models/queue_transaction.dart';
+import 'package:qq/net/restaurant_repository.dart';
 
 class QueueRepository {
   final queueCollection =
@@ -34,20 +35,23 @@ class QueueRepository {
                   (element.data()['userId'] as DocumentReference).id == uid,
             )
                 .map((e) {
-              QueueTransaction queueTrans = QueueTransaction.fromSnapShot(e);
-              queueTrans.queueBefore = 0;
-              // queueTrans.estimateTime = 0;
-              return queueTrans;
+              return QueueTransaction.fromSnapShot(e);
             }).toList());
   }
 
   Future<void> addQueue(QueueTransaction queueTransaction) async {
+    DocumentReference refAdd;
+    RestaurantRepository restaurantRepository = RestaurantRepository();
     try {
-      await queueCollection.add(queueTransaction.toDocument());
-    } on Exception {
-      throw AddQueueFailure();
+      refAdd = await queueCollection.add(queueTransaction.toDocument());
+      try {
+        await restaurantRepository.updateQueue(queueTransaction.resId, "Add");
+      } on FirebaseException {
+        print("Update Queue Fail");
+        await refAdd.delete();
+      }
+    } on FirebaseException {
+      print("Add Queue Error");
     }
   }
 }
-
-class AddQueueFailure implements Exception {}

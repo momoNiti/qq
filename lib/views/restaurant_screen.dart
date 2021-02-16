@@ -57,12 +57,13 @@ class RestaurantScreen extends StatelessWidget {
                               return null;
                             } else {
                               context.read<QueueCubit>().addQueue(
-                                  resId: restaurant.id,
-                                  userId: context
-                                      .read<AuthenticationBloc>()
-                                      .state
-                                      .user
-                                      .id);
+                                    resId: restaurant.id,
+                                    userId: context
+                                        .read<AuthenticationBloc>()
+                                        .state
+                                        .user
+                                        .id,
+                                  );
                             }
                           },
                           child: state.status == QueueEventStatus.inprogress

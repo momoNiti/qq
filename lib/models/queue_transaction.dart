@@ -26,9 +26,8 @@ class QueueTransaction extends Equatable {
   final Timestamp timestamp;
   final bool isQueue;
   final String status;
+  final int queueNumber;
   //
-  Timestamp estimateTime;
-  int queueBefore;
 
   QueueTransaction({
     this.id,
@@ -37,10 +36,12 @@ class QueueTransaction extends Equatable {
     @required this.timestamp,
     @required this.isQueue,
     @required this.status,
+    @required this.queueNumber,
   }) : assert(resId != null, userId != null);
 
   @override
-  List<Object> get props => [id, resId, userId, timestamp, isQueue];
+  List<Object> get props =>
+      [id, resId, userId, timestamp, isQueue, queueNumber];
 
   Map<String, Object> toJson() {
     return {
@@ -49,6 +50,7 @@ class QueueTransaction extends Equatable {
       'userId': userId,
       'timestamp': timestamp,
       'isQueue': isQueue,
+      'queueNumber': queueNumber,
     };
   }
 
@@ -59,6 +61,7 @@ class QueueTransaction extends Equatable {
       'timestamp': timestamp,
       'isQueue': isQueue,
       'status': status,
+      'queueNumber': queueNumber,
     };
   }
 
@@ -70,6 +73,7 @@ class QueueTransaction extends Equatable {
       timestamp: json['timestamp'] as Timestamp,
       isQueue: json['isQueue'] as bool,
       status: json['status'] as String,
+      queueNumber: json['queueNumber'] as int,
     );
   }
 
@@ -81,6 +85,7 @@ class QueueTransaction extends Equatable {
       timestamp: snap['timestamp'] as Timestamp,
       isQueue: snap['isQueue'] as bool,
       status: snap['status'] as String,
+      queueNumber: snap['queueNumber'] as int,
     );
   }
 }
