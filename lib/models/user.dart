@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:qq/utility/utility.dart';
+
+enum UserRole { customer, manager }
 
 class User extends Equatable {
   final String id;
   final String email;
   final String name;
-  final String role;
+  final UserRole role;
 
   const User({
     @required this.id,
@@ -40,16 +43,17 @@ class User extends Equatable {
       id: json['id'] as String,
       email: json['email'] as String,
       name: json['name'] as String,
-      role: json['role'] as String,
+      role: json['role'] as UserRole,
     );
   }
 
   static User fromSnapShot(DocumentSnapshot snap) {
     return User(
       id: snap.id,
-      email: snap.data()['email'],
-      name: snap.data()['name'],
-      role: snap.data()['role'],
+      email: snap.data()['email'] as String,
+      name: snap.data()['name'] as String,
+      role: Utility.enumFromString<UserRole>(
+          snap.data()['role'] as String, UserRole.values),
     );
   }
 }

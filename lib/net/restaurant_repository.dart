@@ -3,25 +3,32 @@ import 'package:qq/models/queue_transaction.dart';
 
 import 'package:qq/models/restaurant.dart';
 import 'package:qq/net/queue_repository.dart';
-import 'package:rxdart/rxdart.dart';
 
 class RestaurantRepository {
+  final collection = FirebaseFirestore.instance.collection('restaurant');
+
   Stream<List<Restaurant>> fetchRestaurants() {
-    return FirebaseFirestore.instance.collection('restaurant').snapshots().map(
+    return collection.snapshots().map(
         (event) => event.docs.map((e) => Restaurant.fromSnapShot(e)).toList());
   }
 
-  Stream<List<Restaurant>> fetchRestaurantsWithQueue() {
-    QueueRepository queueRepository = QueueRepository();
-    return Rx.combineLatest2(fetchRestaurants(), queueRepository.fetchQueues(),
-        (List<Restaurant> restaurant, List<QueueTransaction> queue) {
-      return restaurant.map((e) {
-        var count = queue.where((element) {
-          return element.resId.id == e.id && element.isQueue;
-        }).length;
-        e.queued = count;
-        return e;
-      }).toList();
-    });
+  Future<int> getCurrentQueue(String resId) async {
+    DocumentSnapshot docSnap = await collection.doc(resId).get();
+    return docSnap.get('queued');
+  }
+
+  Future<void> updateQueue(DocumentReference docRef, String action) async {
+    switch (action) {
+      case "Add":
+        collection.doc(docRef.id).update({'queued': FieldValue.increment(1)});
+        break;
+      case "Delete":
+        collection.doc(docRef.id).update({'queued': FieldValue.increment(-1)});
+        break;
+      case "Reset":
+        collection.doc(docRef.id).update({'queued': 0});
+        break;
+      default:
+    }
   }
 }

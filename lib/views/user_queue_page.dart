@@ -26,7 +26,7 @@ class UserQueuePage extends StatelessWidget {
               builder: (context, AuthenticationState state) {
                 return state.status == AuthenticationStatus.authenticated
                     ? Text(context.select((AuthenticationBloc bloc) =>
-                        "Login as Mr.${bloc.state.user.name} and role is ${bloc.state.user.role}"))
+                        "Login as Mr.${bloc.state.user.name} and role is ${Utility.enumToString(bloc.state.user.role)}"))
                     : SizedBox.shrink();
               },
             ),
@@ -67,8 +67,9 @@ class UserQueuePage extends StatelessWidget {
                                       }),
                                   Text(
                                       "เวลาที่จอง ${snapshot.data.elementAt(index).timestamp.toDate().toString()}"),
-                                  Text("เวลาโดยประมาณ"),
-                                  Text("จำนวนคิวก่อนหน้า"),
+                                  Text("เวลาโดยประมาณ ===="),
+                                  Text(
+                                      "จำนวนคิวก่อนหน้า ${snapshot.data.elementAt(index).queueNumber - 1}"),
                                   Text(
                                       "สถานะ : ${snapshot.data.elementAt(index).status}")
                                 ],

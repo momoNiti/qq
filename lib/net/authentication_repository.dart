@@ -20,7 +20,6 @@ class AuthenticationRepository {
       if (firebaseUser == null) {
         return UserModel.User.empty;
       }
-
       return await getUserData(firebaseUser.uid);
     });
   }
