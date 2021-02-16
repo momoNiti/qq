@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "864317586815",
+    "project_id": "flutter-qq-37d3f",
+    "storage_bucket": "flutter-qq-37d3f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864317586815:android:a8834b98158fa764262e4a",
+        "android_client_info": {
+          "package_name": "com.example.qq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864317586815-viofro7gcv18l62hsh3idgmnt7humlb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjJZaqxGHe3njOFaQu2iXsQlefHZuLZ3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864317586815-viofro7gcv18l62hsh3idgmnt7humlb3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
