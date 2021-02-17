@@ -4,7 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'package:qq/models/queue_transaction.dart';
 import 'package:qq/net/queue_repository.dart';
 import 'package:qq/net/restaurant_repository.dart';
-import 'package:qq/views/restaurant_screen.dart';
 
 part 'queue_state.dart';
 

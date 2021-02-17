@@ -1,9 +1,9 @@
 import 'package:qq/models/restaurant.dart';
 import 'package:qq/router/route_path.dart';
 import 'package:qq/views/hoc/app_screen.dart';
-import 'package:qq/views/home_page.dart';
+import 'package:qq/views/customer/home_page.dart';
 import 'package:qq/views/login_screen.dart';
-import 'package:qq/views/restaurant_screen.dart';
+import 'package:qq/views/customer/restaurant_screen.dart';
 import 'package:qq/views/signup_screen.dart';
 import 'package:qq/views/splash_screen.dart';
 import 'package:flutter/material.dart';
