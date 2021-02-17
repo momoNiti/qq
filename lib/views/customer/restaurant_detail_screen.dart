@@ -8,10 +8,10 @@ import 'package:qq/net/queue_repository.dart';
 import 'package:qq/views/hoc/app_scaffold.dart';
 import 'package:provider/provider.dart';
 
-class RestaurantScreen extends StatelessWidget {
+class RestaurantDetailScreen extends StatelessWidget {
   final Restaurant restaurant;
   final QueueRepository _queueRepository = QueueRepository();
-  RestaurantScreen({Key key, this.restaurant})
+  RestaurantDetailScreen({Key key, this.restaurant})
       : assert(restaurant != null),
         super(key: key);
   @override

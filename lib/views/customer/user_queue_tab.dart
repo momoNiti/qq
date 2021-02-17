@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:qq/bloc/authentication/authentication_bloc.dart';
-import 'package:qq/bloc/counter/counter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qq/cubit/queue/queue_cubit.dart';
@@ -9,7 +8,7 @@ import 'package:qq/net/queue_repository.dart';
 import 'package:qq/utility/utility.dart';
 import 'package:qq/views/hoc/app_scaffold.dart';
 
-class UserQueuePage extends StatelessWidget {
+class UserQueueTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final QueueCubit _counterBloc = BlocProvider.of<QueueCubit>(context);

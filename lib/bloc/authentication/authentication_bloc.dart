@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:qq/models/restaurant.dart';
 import 'package:qq/models/user.dart';
 import 'package:qq/net/authentication_repository.dart';
 import 'package:equatable/equatable.dart';
@@ -20,7 +21,9 @@ class AuthenticationBloc
         _authenticationRepository = authenticationRepository,
         super(const AuthenticationState.unknown()) {
     _userSubscription = _authenticationRepository.user.listen(
-      (user) => add(AuthenticationUserChanged(user)),
+      (user) {
+        return add(AuthenticationUserChanged(user));
+      },
     );
   }
 

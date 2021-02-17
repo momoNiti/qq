@@ -1,4 +1,5 @@
 import 'package:qq/bloc/authentication/authentication_bloc.dart';
+import 'package:qq/models/user.dart';
 import 'package:qq/net/authentication_repository.dart';
 import 'package:qq/router/route_path.dart';
 import 'package:qq/router/router.dart';
@@ -44,25 +45,28 @@ class _MyAppState extends State<MyApp> {
           ),
           navigatorKey: _navigatorKey,
           onGenerateRoute: RouterApp.generateRoute,
-          // initialRoute: RoutePath.login,
           debugShowCheckedModeBanner: false,
           builder: (context, child) {
             return BlocListener<AuthenticationBloc, AuthenticationState>(
               listener: (context, state) {
-                switch (state.status) {
-                  case AuthenticationStatus.authenticated:
-                    // debugPrint("=========Authen=========");
-                    _navigator.pushNamedAndRemoveUntil<void>(
-                        RoutePath.appScreen, (route) => false);
-                    break;
-                  case AuthenticationStatus.unauthenticated:
-                    // debugPrint("=========UNAuthen=========");
-                    _navigator.pushNamedAndRemoveUntil(
-                        RoutePath.login, (route) => false);
-                    break;
-                  default:
-                    // debugPrint("=========DEFAULT=========");
-                    break;
+                if (state.status == AuthenticationStatus.authenticated &&
+                    state.user.role == UserRole.customer) {
+                  // debugPrint("=========Authen=========");
+                  _navigator.pushNamedAndRemoveUntil<void>(
+                      RoutePath.appCustomerScreen, (route) => false);
+                }
+
+                if (state.status == AuthenticationStatus.authenticated &&
+                    state.user.role == UserRole.manager) {
+                  // debugPrint("=========Authen=========");
+                  _navigator.pushNamedAndRemoveUntil<void>(
+                      RoutePath.appManagerScreen, (route) => false);
+                }
+
+                if (state.status == AuthenticationStatus.unauthenticated) {
+                  // debugPrint("=========UNAuthen=========");
+                  _navigator.pushNamedAndRemoveUntil(
+                      RoutePath.login, (route) => false);
                 }
               },
               child: child,

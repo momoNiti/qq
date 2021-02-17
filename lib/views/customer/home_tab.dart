@@ -7,7 +7,7 @@ import 'package:qq/router/route_path.dart';
 import 'package:qq/utility/utility.dart';
 import 'package:qq/views/hoc/app_scaffold.dart';
 
-class HomePage extends StatelessWidget {
+class HomeCustomerTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final RestaurantRepository restaurantRepository = RestaurantRepository();
 
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                             return GestureDetector(
                               onTap: () {
                                 Navigator.of(context).pushNamed(
-                                  RoutePath.restaurant,
+                                  RoutePath.customerRestaurantDetail,
                                   arguments: Restaurant(
                                       id: snapshot.data.elementAt(index).id,
                                       name: snapshot.data.elementAt(index).name,

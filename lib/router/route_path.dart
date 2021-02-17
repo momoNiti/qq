@@ -1,8 +1,15 @@
 class RoutePath {
-  static const String appScreen = '/appScreen';
+  // ========= App ==========
+  static const String splash = '/';
   static const String login = '/login';
   static const String signup = '/signup';
-  static const String splash = '/';
-  static const String restaurant = '/restaurant';
-  static const String tabHome = 'home';
+
+  // ========= Customer ==========
+  static const String appCustomerScreen = '/appCustomerScreen';
+  static const String customerTabHome = 'customer/tabHome';
+  static const String customerRestaurantDetail = 'customer/restaurantDetail';
+
+  // ========= Manager ==========
+  static const String appManagerScreen = '/appManagerScreen';
+  static const String managerTabQueueManage = 'manager/tabQueueManage';
 }

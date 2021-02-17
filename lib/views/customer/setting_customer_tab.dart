@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qq/views/hoc/app_scaffold.dart';
 
-class SettingPage extends StatelessWidget {
+class SettingCustomerTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CounterBloc counterBloc = BlocProvider.of<CounterBloc>(context);
