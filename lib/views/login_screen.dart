@@ -23,7 +23,7 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
     return BlocListener<SigninCubit, SigninState>(
-      cubit: BlocProvider.of<SigninCubit>(context),
+      bloc: BlocProvider.of<SigninCubit>(context),
       listener: (context, state) {
         if (state.status.isSubmissionFailure) {
           Scaffold.of(context)

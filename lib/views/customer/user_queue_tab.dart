@@ -21,7 +21,7 @@ class UserQueueTab extends StatelessWidget {
         child: Column(
           children: [
             BlocBuilder(
-              cubit: context.read<AuthenticationBloc>(),
+              bloc: context.read<AuthenticationBloc>(),
               builder: (context, AuthenticationState state) {
                 return state.status == AuthenticationStatus.authenticated
                     ? Text(context.select((AuthenticationBloc bloc) =>

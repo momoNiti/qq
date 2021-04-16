@@ -15,7 +15,7 @@ class SettingCustomerTab extends StatelessWidget {
         child: Column(
           children: [
             BlocBuilder(
-              cubit: counterBloc,
+              bloc: counterBloc,
               builder: (BuildContext context, CounterState state) {
                 return Text("Setting Page ${state.counter}");
               },

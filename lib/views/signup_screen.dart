@@ -22,7 +22,7 @@ class SignupForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
     return BlocListener<SignupCubit, SignupState>(
-      cubit: BlocProvider.of<SignupCubit>(context),
+      bloc: BlocProvider.of<SignupCubit>(context),
       listener: (context, state) {
         if (state.status.isSubmissionFailure) {
           Scaffold.of(context)

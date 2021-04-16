@@ -35,7 +35,7 @@ class RestaurantDetailScreen extends StatelessWidget {
                         }),
                   ),
                   BlocConsumer<QueueCubit, QueueState>(
-                      cubit: BlocProvider.of<QueueCubit>(context),
+                      bloc: BlocProvider.of<QueueCubit>(context),
                       listener: (context, state) {
                         if (state.status == QueueEventStatus.failure) {
                           Scaffold.of(context)

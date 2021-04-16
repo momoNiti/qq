@@ -13,7 +13,7 @@ class AppCustomerScreen extends StatefulWidget {
 
 class _AppCustomerScreenState extends State<AppCustomerScreen> {
   int _indexPage = 0;
-  @override
+
   @override
   Widget build(BuildContext context) {
     final navigatorKey = GlobalObjectKey<NavigatorState>(context);
